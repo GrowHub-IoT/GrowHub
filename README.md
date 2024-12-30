@@ -1,7 +1,7 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/b96cc50a-4dba-47f1-b21e-554081cf1bf9" alt="Logo GrowHub" width="245">
-  <img src="https://github.com/user-attachments/assets/6915f5e9-daec-4b96-8173-fab7df593902" alt="Logo GrowHub" width="185">
-  <img src="https://github.com/user-attachments/assets/3b940f54-f4df-4919-8a89-37347a0bccb6" alt="Logo GrowHub" width="200">
+  <img src="https://github.com/GrowHub-IoT/GrowHub/blob/master/docs/assets/GrowHub_Logo.png?raw=true" alt="Logo GrowHub" width="245">
+  <img src="https://github.com/GrowHub-IoT/GrowHub/blob/master/docs/assets/BSD-3_License.png?raw=true" alt="BSD3 License" width="185">
+  <img src="https://github.com/GrowHub-IoT/GrowHub/blob/master/docs/assets/OSI.png?raw=true" alt="OSI" width="200">
 </p>
 
 
@@ -49,7 +49,7 @@ Sensor readings are dynamically processed in C++ and encapsulated into JSON obje
 GrowHub's modular architecture and real-time visualizations powered by Plotly enable farmers to monitor trends, identify issues, and optimize their operations. This seamless integration of IoT, cloud technologies, and data processing establishes GrowHub as a key tool for precision and sustainable agriculture.
 
 
-![image](https://github.com/user-attachments/assets/c93599b1-6161-47b9-9ec8-a5a978bbdae8)
+![Dashboard](https://github.com/GrowHub-IoT/GrowHub/blob/master/docs/assets/Dashboard.png?raw=true)
 
 
 
@@ -113,7 +113,7 @@ GrowHub is not just a software solution; it is a Research and Development (R&D) 
 
 
 ---
-![Dashboard](https://github.com/user-attachments/assets/d610268f-041c-477f-a0f7-1d5b40b78ae4)
+![Shell](https://github.com/GrowHub-IoT/GrowHub/blob/master/docs/assets/Shell.jpeg?raw=true)
 
 ## 🛠️ Installation
 
@@ -147,7 +147,7 @@ Ensure the following are available for deploy:
 1. **Clone the Repository**
    ```sh
    git clone https://github.com/rmardonesa/growhub.git
-   cd growhub-iot
+   cd growhub
    ```
 
 2. **Set Up Virtual Environment and Install Dependencies**
@@ -215,7 +215,7 @@ Ensure the following are available for deploy:
 <details>
   <summary>📜 Sensor Calibration Details</summary>
   <p>
-  <img src="https://github.com/user-attachments/assets/80efbad8-e463-4411-a119-e73d05756a80" width=240>
+  <img src="https://github.com/GrowHub-IoT/GrowHub/blob/master/docs/assets/Calibration.png?raw=true" width=240>
   <p>
   Calibrate sensors for pH, TDS, and temperature to ensure precision.
 
@@ -306,8 +306,8 @@ Ensure the following are available for deploy:
 
    
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f23806a8-d978-406a-8273-aea9d98eaa21" width="380">
-  <img src="https://github.com/user-attachments/assets/3761aa7a-1152-420c-a886-a98dd492c874" width="340">
+  <img src="https://github.com/GrowHub-IoT/GrowHub/blob/master/docs/assets/Prototype_01.png?raw=true" width="380">
+  <img src="https://github.com/GrowHub-IoT/GrowHub/blob/master/docs/assets/Prototype_02.png?raw=true" width="340">
 <p>
 
 
