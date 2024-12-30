@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <h2>GrowHub Realtime Service</h2>
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="GrowHub Logo" class="logo-img">
+        <form method="POST">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+        <p>¿Sin credenciales? <a href="{{ url_for('register') }}">Regístrate</a></p>
+    </div>
+</body>
+</html>

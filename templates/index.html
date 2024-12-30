@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interfaz Monitoreo de Cultivo</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='config.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/logo.svg') }}">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo-img">
+        </div>
+        <div class="location">
+            <img src="{{ url_for('static', filename='images/cl-flag.svg') }}" alt="Chile" class="flag-img">
+            <span>Concepción</span>
+            <span class="status">Servicio habilitado</span>
+        </div>
+        <div class="service">
+            <img src="{{ url_for('static', filename='images/br-flag.svg') }}" alt="Brazil" class="flag-img">
+            <span>Sao Paulo</span>
+            <span class="status">AsyncService Realtime</span>
+            <span class="instances">southamerica-east (GCP) | sa-east-1 (AWS)</span>
+        </div>
+        <div class="icons">
+            <a href="{{ url_for('index') }}" class="dashboard-icon">
+                <i class="fas fa-chart-line"></i>
+            </a>
+            <i class="fas fa-book info-icon"></i>
+            <a href="{{ url_for('lab_info') }}" class="lab-icon">
+                <i class="fas fa-flask"></i>
+            </a>
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-bars menu-icon" id="menu-icon"></i>
+            <a href="#" class="logout-icon" id="logout-link">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div id="loading-bar" class="loading-bar">
+            <div class="loading-bar-progress"></div>
+        </div>
+        <div id="chart1"></div> 
+        <div id="chart2"></div>
+        <div id="chart3"></div>
+        <div id="chart4"></div>
+    </div>
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>¿Estás seguro/a que deseas cerrar sesión?</p>
+            <button id="confirm-logout">Sí</button>
+            <button id="cancel-logout">No</button>
+        </div>
+    </div>
+    <div id="info-cards" class="info-cards" style="display: none;">
+        <div class="card">
+            <h3>Temperatura (°C)</h3>
+            <p>La temperatura afecta directamente el metabolismo de las plantas y la solubilidad de los nutrientes en la solución hidropónica. Una temperatura óptima asegura que las raíces absorban nutrientes eficientemente, mientras que temperaturas fuera del rango adecuado pueden causar problemas como estrés térmico, disminución del oxígeno disuelto y acumulación de sales.</p>
+        </div>
+        <div class="card">
+            <h3>pH</h3>
+            <p>El pH determina la disponibilidad de los nutrientes en la solución. Cada nutriente tiene un rango de pH en el que es más fácilmente absorbido por las raíces. Un pH incorrecto puede provocar deficiencias o toxicidades, incluso si la concentración de nutrientes es adecuada.</p>
+        </div>
+        <div class="card">
+            <h3>TDS (ppm)</h3>
+            <p>El TDS mide la cantidad total de sales disueltas en la solución nutritiva, lo cual es un indicador de la concentración de nutrientes disponibles.. Valores adecuados previenen deficiencias y toxicidades nutricionales.</p>
+        </div>
+        <div class="card">
+            <h3>EC (µS/cm)</h3>
+            <p>La EC mide la capacidad de la solución para conducir electricidad, lo que depende directamente de la concentración de sales disueltas (nutrientes).</p>
+        </div>
+    </div>
+    <div id="menu-dropdown" class="menu-dropdown" style="display: none;">
+        <ul>
+            <li><a href="{{ url_for('parameters') }}">Configurar parámetros</a></li>
+            <li><a href="#">Plan de cultivo</a></li>
+            <li><a href="{{ url_for('generate_report') }}">Generar reporte</a></li>
+        </ul>
+    </div>
+</body>
+</html>

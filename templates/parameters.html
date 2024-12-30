@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Configurar Parámetros</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo-img">
+        </div>
+        <div class="location">
+            <img src="{{ url_for('static', filename='images/cl-flag.svg') }}" alt="Chile" class="flag-img">
+            <span>Concepción</span>
+            <span class="status">Servicio habilitado</span>
+        </div>
+        <div class="service">
+            <img src="{{ url_for('static', filename='images/br-flag.svg') }}" alt="Brazil" class="flag-img">
+            <span>Sao Paulo</span>
+            <span class="status">AsyncService Realtime</span>
+            <span class="instances">southamerica-east (GCP) | sa-east-1 (AWS)</span>
+        </div>
+        <div class="icons">
+            <a href="{{ url_for('index') }}" class="dashboard-icon">
+                <i class="fas fa-chart-line"></i>
+            </a>
+            <i class="fas fa-book info-icon"></i>
+            <a href="{{ url_for('lab_info') }}" class="lab-icon">
+                <i class="fas fa-flask"></i>
+            </a>
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-bars menu-icon" id="menu-icon"></i>
+            <a href="{{ url_for('logout') }}" class="logout-icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </div>
+    <div class="parameters-container">
+        <h2 class="page-title">Configurar Parámetros</h2>
+        <label for="plant-select">Selecciona una planta:</label>
+        <select id="plant-select">
+            <option value="Lollo Bionda">Lollo Bionda</option>
+            <option value="Lechuga Española">Lechuga Española</option>
+            <option value="Tomate Cherry">Tomate Cherry</option>
+            <option value="Pepino">Pepino</option>
+            <option value="Albahaca">Albahaca</option>
+            <option value="Fresa">Fresa</option>
+        </select>
+        <button id="set-plant">SET</button>
+        <table class="parameter-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Riesgoso</th>
+                    <th>Aceptable</th>
+                    <th>Óptimo</th>
+                    <th>Aceptable</th>
+                    <th>Riesgoso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Temperatura (°C)</td>
+                    <td id="temp-risk-low"></td>
+                    <td id="temp-acceptable-low"></td>
+                    <td id="temp-optimal"></td>
+                    <td id="temp-acceptable-high"></td>
+                    <td id="temp-risk-high"></td>
+                </tr>
+                <tr>
+                    <td>pH</td>
+                    <td id="ph-risk-low"></td>
+                    <td id="ph-acceptable-low"></td>
+                    <td id="ph-optimal"></td>
+                    <td id="ph-acceptable-high"></td>
+                    <td id="ph-risk-high"></td>
+                </tr>
+                <tr>
+                    <td>TDS (ppm)</td>
+                    <td id="tds-risk-low"></td>
+                    <td id="tds-acceptable-low"></td>
+                    <td id="tds-optimal"></td>
+                    <td id="tds-acceptable-high"></td>
+                    <td id="tds-risk-high"></td>
+                </tr>
+                <tr>
+                    <td>EC (mS/cm)</td>
+                    <td id="ec-risk-low"></td>
+                    <td id="ec-acceptable-low"></td>
+                    <td id="ec-optimal"></td>
+                    <td id="ec-acceptable-high"></td>
+                    <td id="ec-risk-high"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/plant_parameters')
+                .then(response => response.json())
+                .then(data => {
+                    window.plantParameters = data;
+                    loadDefaultParameters();
+                });
+
+            const plantSelect = document.getElementById('plant-select');
+            const setPlantButton = document.getElementById('set-plant');
+
+            function updateTable(parameters) {
+                document.getElementById('temp-risk-low').textContent = `< ${parameters.temperature.min}`;
+                document.getElementById('temp-risk-low').className = 'risk-low';
+                document.getElementById('temp-acceptable-low').textContent = `${parameters.temperature.min} - ${parameters.temperature.min + 2}`;
+                document.getElementById('temp-acceptable-low').className = 'acceptable-low';
+                document.getElementById('temp-optimal').textContent = `${parameters.temperature.min + 2} - ${parameters.temperature.max - 2}`;
+                document.getElementById('temp-optimal').className = 'optimal';
+                document.getElementById('temp-acceptable-high').textContent = `${parameters.temperature.max - 2} - ${parameters.temperature.max}`;
+                document.getElementById('temp-acceptable-high').className = 'acceptable-high';
+                document.getElementById('temp-risk-high').textContent = `> ${parameters.temperature.max}`;
+                document.getElementById('temp-risk-high').className = 'risk-high';
+
+                document.getElementById('ph-risk-low').textContent = `< ${parameters.pH.min}`;
+                document.getElementById('ph-risk-low').className = 'risk-low';
+                document.getElementById('ph-acceptable-low').textContent = `${parameters.pH.min} - ${parameters.pH.min + 0.2}`;
+                document.getElementById('ph-acceptable-low').className = 'acceptable-low';
+                document.getElementById('ph-optimal').textContent = `${parameters.pH.min + 0.2} - ${parameters.pH.max - 0.2}`;
+                document.getElementById('ph-optimal').className = 'optimal';
+                document.getElementById('ph-acceptable-high').textContent = `${parameters.pH.max - 0.2} - ${parameters.pH.max}`;
+                document.getElementById('ph-acceptable-high').className = 'acceptable-high';
+                document.getElementById('ph-risk-high').textContent = `> ${parameters.pH.max}`;
+                document.getElementById('ph-risk-high').className = 'risk-high';
+
+                document.getElementById('tds-risk-low').textContent = `< ${parameters.TDS.min}`;
+                document.getElementById('tds-risk-low').className = 'risk-low';
+                document.getElementById('tds-acceptable-low').textContent = `${parameters.TDS.min} - ${parameters.TDS.min + 50}`;
+                document.getElementById('tds-acceptable-low').className = 'acceptable-low';
+                document.getElementById('tds-optimal').textContent = `${parameters.TDS.min + 50} - ${parameters.TDS.max - 50}`;
+                document.getElementById('tds-optimal').className = 'optimal';
+                document.getElementById('tds-acceptable-high').textContent = `${parameters.TDS.max - 50} - ${parameters.TDS.max}`;
+                document.getElementById('tds-acceptable-high').className = 'acceptable-high';
+                document.getElementById('tds-risk-high').textContent = `> ${parameters.TDS.max}`;
+                document.getElementById('tds-risk-high').className = 'risk-high';
+
+                document.getElementById('ec-risk-low').textContent = `< ${parameters.EC.min}`;
+                document.getElementById('ec-risk-low').className = 'risk-low';
+                document.getElementById('ec-acceptable-low').textContent = `${parameters.EC.min} - ${parameters.EC.min + 0.2}`;
+                document.getElementById('ec-acceptable-low').className = 'acceptable-low';
+                document.getElementById('ec-optimal').textContent = `${parameters.EC.min + 0.2} - ${parameters.EC.max - 0.2}`;
+                document.getElementById('ec-optimal').className = 'optimal';
+                document.getElementById('ec-acceptable-high').textContent = `${parameters.EC.max - 0.2} - ${parameters.EC.max}`;
+                document.getElementById('ec-acceptable-high').className = 'acceptable-high';
+                document.getElementById('ec-risk-high').textContent = `> ${parameters.EC.max}`;
+                document.getElementById('ec-risk-high').className = 'risk-high';
+            }
+
+            function loadDefaultParameters() {
+                const defaultPlant = "Lollo Bionda";
+                const parameters = window.plantParameters[defaultPlant];
+                if (parameters) {
+                    updateTable(parameters);
+                }
+            }
+
+            setPlantButton.addEventListener('click', function () {
+                const selectedPlant = plantSelect.value;
+                const parameters = window.plantParameters[selectedPlant];
+                if (parameters) {
+                    updateTable(parameters);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

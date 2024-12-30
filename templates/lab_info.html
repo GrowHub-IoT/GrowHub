@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Información de Soluciones Nutricionales</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo-img">
+        </div>
+        <div class="location">
+            <img src="{{ url_for('static', filename='images/cl-flag.svg') }}" alt="Chile" class="flag-img">
+            <span>Concepción</span>
+            <span class="status">Servicio habilitado</span>
+        </div>
+        <div class="service">
+            <img src="{{ url_for('static', filename='images/br-flag.svg') }}" alt="Brazil" class="flag-img">
+            <span>Sao Paulo</span>
+            <span class="status">AsyncService Realtime</span>
+            <span class="instances">southamerica-east (GCP) | sa-east-1 (AWS)</span>
+        </div>
+        <div class="icons">
+            <a href="{{ url_for('index') }}" class="dashboard-icon">
+                <i class="fas fa-chart-line"></i>
+            </a>
+            <i class="fas fa-book info-icon"></i>
+            <a href="{{ url_for('lab_info') }}" class="lab-icon">
+                <i class="fas fa-flask"></i>
+            </a>
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-bars menu-icon" id="menu-icon"></i>
+            <a href="{{ url_for('logout') }}" class="logout-icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+            
+            
+        </div>
+    </div>
+    <div class="container">
+        <div class="info-section">
+            <h3>Soluciones A y B</h3>
+            <p>Las soluciones "A" y "B" se ajustan para satisfacer los requerimientos específicos de Lollo Bionda, que necesita una nutrición balanceada para un crecimiento rápido y hojas tiernas. Dado que la lechuga tiene un ciclo corto, estas soluciones deben ser revisadas y recalibradas frecuentemente.</p>
+            <p><strong>Solución A:</strong> Nitrato de calcio (Ca(NO₃)₂), Quelatos de hierro (EDTA-Fe o DTPA-Fe)</p>
+            <p><strong>Solución B:</strong> Sulfato de magnesio (MgSO₄), Fosfato monopotásico (KH₂PO₄), Micronutrientes (Boro, Molibdeno, Zinc, Manganeso)</p>
+        </div>
+        <div class="info-section">
+            <h3>Fertilizantes NPK</h3>
+            <p>El balance de NPK debe ajustarse a la etapa de desarrollo de la lechuga, ya que la demanda de nutrientes varía a lo largo de su ciclo.</p>
+            <p><strong>Etapa de crecimiento inicial:</strong> NPK: 2:1:1. Más nitrógeno para promover el crecimiento vegetativo rápido.</p>
+            <p><strong>Etapa de desarrollo pleno (antes de la cosecha):</strong> NPK: 1:1:1. Equilibrio entre nitrógeno, fósforo y potasio para garantizar hojas bien formadas y resistentes.</p>
+        </div>
+        <div class="info-section">
+            <h3>Soluciones de ajuste de pH</h3>
+            <p>Para mantener el pH dentro del rango ideal, se pueden utilizar soluciones específicas para corregir desviaciones:</p>
+            <p><strong>Soluciones "top-down" (bajar pH):</strong> Ácido fosfórico (H₃PO₄), Ácido nítrico (HNO₃)</p>
+            <p><strong>Soluciones "top-up" (subir pH):</strong> Hidróxido de potasio (KOH), Carbonato de potasio (K₂CO₃)</p>
+        </div>
+        <div class="info-section">
+            <h3>Relaciones Proporcionales y Tips</h3>
+            <p>Las hojas pálidas pueden indicar una deficiencia de magnesio. La electroconductividad alta puede indicar estrés osmótico, dificultando la absorción de agua. Mantén un monitoreo constante de las variables clave para asegurar un crecimiento óptimo de tus plantas.</p>
+        </div>
+    </div>
+    <div id="menu-dropdown" class="menu-dropdown" style="display: none;">
+        <ul>
+            <li><a href="#">Configurar parámetros</a></li>
+            <li><a href="#">Plan de cultivo</a></li>
+            <li><a href="#">Generar reporte</a></li>
+        </ul>
+    </div>
+</body>
+</html>
